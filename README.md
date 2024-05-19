@@ -67,7 +67,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
       PMA_PORT: 3306
 
-
+```
 ## Frontend
 
 ### Technologies Used
@@ -127,7 +127,7 @@ xml
     <scope>runtime</scope>
 </dependency>
 
-
+```
 
 ## Getting Started
 
