@@ -21,7 +21,6 @@ This platform will enable multi-criteria comparison of different project alterna
 
 The application architecture uses Angular for the frontend and Spring for the backend, with communication via an HTTP client.
 ## Docker Image
-yaml
 version: '3'
 services:
   mysql:
@@ -34,8 +33,8 @@ services:
 
   backend:
     build:
-      context: ./pfa2021  # Utilisez le répertoire actuel où se trouve le Dockerfile du backend
-      dockerfile: Dockerfile  # Assurez-vous que le Dockerfile est dans le même répertoire que docker-compose.yml
+      context: ./pfa2021 # Utilisez le répertoire actuel où se trouve le Dockerfile du backend
+      dockerfile: Dockerfile # Assurez-vous que le Dockerfile est dans le même répertoire que docker-compose.yml
     ports:
       - "8000:8000"
     environment:
@@ -48,7 +47,7 @@ services:
 
   frontend:
     build:
-      context: ./argon-design-system-angular-master  # Utilise le répertoire actuel où se trouve le Dockerfile du frontend
+      context: ./argon-design-system-angular-master # Utilise le répertoire actuel où se trouve le Dockerfile du frontend
       dockerfile: DockerFile
     ports:
       - "80:80"
@@ -64,6 +63,7 @@ services:
       PMA_HOST: mysql
       MYSQL_ROOT_PASSWORD: root
       PMA_PORT: 3306
+
 
 ## Frontend
 
@@ -108,9 +108,6 @@ The backend code follows a modular and organized structure, leveraging the power
 
 1. *Spring Data JPA:*
    - Purpose: Simplifies data access using JPA in Spring Boot.
-
-
-
 2. MySQL Connector/J:
 Purpose: JDBC driver for connecting to a MySQL database.
 
