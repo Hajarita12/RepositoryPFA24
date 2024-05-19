@@ -1,8 +1,9 @@
-# Solution Intégrée AHP-TOPSIS et Fuzzy AHP TOPSIS pour la Prise de Décision Multicritère
+# Integrated AHP-TOPSIS and Fuzzy AHP TOPSIS Solution for Multi-Criteria Decision Making
 
 ![WhatsApp Image 2024-05-19 à 16 44 40_c5e9563f](https://github.com/Hajarita12/RepositoryPFA24/assets/120518556/b9319c5b-9b18-4faf-9512-058a1b2c063f)
 
-Cette plateforme permettra la comparaison multicritère des différentes alternatives pour un projet, en se basant sur les méthodes bien établies de l’Analytic Hierarchy Process (AHP), la Technique for Order of Preference by Similarity to Ideal Solution (TOPSIS), ainsi que leurs variantes Fuzzy : le Fuzzy Analytic Hierarchy Process (FAHP) et le Fuzzy Technique for Order of Preference by Similarity to Ideal Solution (FTOPSIS).
+This platform will enable multi-criteria comparison of different project alternatives based on well-established methods such as the Analytic Hierarchy Process (AHP), the Technique for Order of Preference by Similarity to Ideal Solution (TOPSIS), as well as their Fuzzy variants: the Fuzzy Analytic Hierarchy Process (FAHP) and the Fuzzy Technique for Order of Preference by Similarity to Ideal Solution (FTOPSIS).
+
 ## Table of Contents
 
 
@@ -11,157 +12,67 @@ Cette plateforme permettra la comparaison multicritère des différentes alterna
 - [Frontend](#frontend)
 - [Backend](#backend)
 - [Getting Started](#getting-started)
-- [Usage](#usage)
-- [Folder Structure](#folder-structure)
-- [Dependencies](#dependencies)
 - [Video Demonstration](#Video-Demonstration)
 - [Contributing](#contributing)
 
 
 ## Software architecture
 ![angular-8-springboot-crud-app](https://github.com/Hajarita12/RepositoryPFA24/assets/120518556/f94a1c60-6b9c-41f3-ad81-99e9e525ac19)
-l’architecture de l’application, utilise Angular pour le frontend, Spring pour le backend, avec une communication via un HTTP client.
+
+The application architecture uses Angular for the frontend and Spring for the backend, with communication via an HTTP client.
 ## Docker Image
 yaml
 version: '3'
 services:
-  blanded_learning_backend:
-    container_name: blanded_learning_backend
-    restart: always
-    ports:
-      - "8082:8082"
-    image: rmakaoui/mybackend:11.0  
-    environment:
-      - MYSQL_HOST=mysql
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=root
-      - MYSQL_PORT=3306
-    depends_on:
-      - mysql
-    networks:
-      - app-network
-
   mysql:
-    container_name: mysql
-    image: mysql:latest
+    image: mysql:5.7
     ports:
-      - "3306:3306"
+      - "3308:3308"
     environment:
-      MYSQL_DATABASE: mydatabase
+      MYSQL_DATABASE: testt
       MYSQL_ROOT_PASSWORD: root
-    networks:
-      - app-network
-    volumes:
-      - mysql:/var/lib/mysql
+
+  backend:
+    build:
+      context: ./pfa2021  # Utilisez le répertoire actuel où se trouve le Dockerfile du backend
+      dockerfile: Dockerfile  # Assurez-vous que le Dockerfile est dans le même répertoire que docker-compose.yml
+    ports:
+      - "8000:8000"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/testt
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    depends_on:
+      mysql:
+        condition: service_started
+
+  frontend:
+    build:
+      context: ./argon-design-system-angular-master  # Utilise le répertoire actuel où se trouve le Dockerfile du frontend
+      dockerfile: DockerFile
+    ports:
+      - "80:80"
+    depends_on:
+      backend:
+        condition: service_started
 
   phpmyadmin:
-    container_name: phpmyadmin
-    image: phpmyadmin/phpmyadmin:latest
-    environment:
-      - PMA_ARBITRARY=1
-      - PMA_HOST=mysql
-      - PMA_USER=root
-      - PMA_PASSWORD=root
+    image: phpmyadmin/phpmyadmin
     ports:
       - "8081:80"
-    depends_on:
-      - mysql
-    networks:
-      - app-network
-
-  blanded_learning_frontend:
-    container_name: blanded_learning_frontend
-    image: rmakaoui/myfrontend:20.0  
-    ports:
-      - 4200:80
-    depends_on:
-      - blanded_learning_backend
-    networks:
-      - app-network
-
-volumes:
-  mysql:
-
-networks:
-  app-network:
-    driver: bridge
-
-
-
-
-
-
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: root
+      PMA_PORT: 3306
 
 ## Frontend
 
 ### Technologies Used
 
 - Angular
-- Bootstrap
-
-## Frontend Project Structure
-
-The Angular front-end project is organized around six main components, each serving a specific purpose and contributing to the overall architecture and maintainability of the application.
-
-### 1. ADD Component
-
-- *Purpose:* The ADD component is responsible for handling the addition of new items, entities, or data to the application.
-- *Functionality:* Users can input relevant information and submit data, triggering actions such as creating new records or entities.
-
-### 2. GESTION Component
-
-- *Purpose:* The GETSION component focuses on retrieving and displaying data from the backend server.
-- *Functionality:* It fetches and presents information, enabling users to view details or perform actions related to the retrieved data.
-
-### 3. DASHBOARD Component
-
-- *Purpose:* The DASHBOARD component serves as the central hub for users, offering an overview of key metrics, statistics, or important information.
-- *Functionality:* It may aggregate data from various sources and present it in a visually appealing and informative manner.
-
-### 4. EDIT Component
-
-- *Purpose:* The EDIT component handles the modification of existing data or entities.
-- *Functionality:* Users can access and edit information, with changes reflected in real-time or upon submission.
-
-### 5. HOME Component
-
-- *Purpose:* The HOME component acts as the main entry point of the application, providing a landing page or initial interface.
-- *Functionality:* It may include navigation links, welcome messages, or any other content to guide users through the application.
-
-### 6. TIMETABLE Component
-
-- *Purpose:* The TIMETABLE component is responsible for displaying schedules, calendars, or timelines within the application.
-- *Functionality:* Users can view and manage time-based information, making it particularly relevant for applications with scheduling features.
-
-### Shared Components and Services
-
-- *Shared Components:* Identify any components that are reused across multiple parts of the application, promoting code reusability.
-- *Services:* Mention any Angular services used for common functionality, data retrieval, or interaction with the backend.
-
-### Routing
-
-- *Angular Router:* Describe how the Angular Router is utilized to navigate between the different components, ensuring a seamless user experience.
-
-### Styling and Theming
-
-- *Styling:* Specify the styling approach, whether it's through plain CSS, SCSS, or the use of a specific CSS framework.
-- *Theming:* If applicable, describe how theming is handled in the application.
-
-### Dependencies
-
-List the main dependencies for the frontend along with their versions.
-
-json
-{
-  "dependencies": {
-    "@angular/animations": "^16.0.0",
-    "@angular/cdk": "^17.0.1",
-  },
-  "devDependencies": {
-    "@angular-devkit/build-angular": "^16.0.1",
-    "@angular/cli": "~16.0.1",
-  }
-}
+- HTML
+- CSS
+- TS
 
 
 ## Backend
@@ -183,15 +94,12 @@ The backend code follows a modular and organized structure, leveraging the power
 
 - *Controller Classes:* The controller package contains classes responsible for handling incoming HTTP requests. Each controller class is dedicated to a specific feature or entity, exposing RESTful endpoints. These classes interact with the services to process requests and return appropriate responses.
 
-### 3. com.example.service
 
-- *Service Classes:* The service package hosts classes that encapsulate business logic. These classes are used by controllers to perform operations on data and communicate with repositories. They provide a layer of abstraction between controllers and repositories.
-
-### 4. com.example.model
+### 3. com.example.model
 
 - *Entity Classes:* The model package includes classes representing data entities in the application. These classes are annotated with JPA annotations, defining the structure of the database tables. Each entity typically corresponds to a table in the MySQL database.
 
-### 5. com.example.repository
+### 4. com.example.repository
 
 - *Repository Interfaces:* The repository package contains interfaces that extend Spring Data JPA repositories. These interfaces provide methods for basic CRUD operations and are used by services to interact with the database.
 
@@ -201,23 +109,21 @@ The backend code follows a modular and organized structure, leveraging the power
 1. *Spring Data JPA:*
    - Purpose: Simplifies data access using JPA in Spring Boot.
 
-2. *Lombok (Optional):*
-   - Purpose: Reduces boilerplate code by generating methods during compilation.
 
-3. *MySQL Connector/J:*
+
+2. *MySQL Connector/J:*
    - Purpose: JDBC driver for connecting to a MySQL database.
 
-4. *OptaPlanner:*
-    - Purpose: OptaPlanner is an AI constraint satisfaction solver that is used for automated planning and optimization. It provides optimization algorithms to solve complex planning problems, making it suitable for scenarios like resource allocation, scheduling, and more in your blended learning platform.
+
 xml
+         <dependency>
+		    	<groupId>org.springframework.boot</groupId>
+		   	  <artifactId>spring-boot-starter-data-jpa</artifactId>
+	     	</dependency>
         <dependency>
-            <groupId>org.optaplanner</groupId>
-            <artifactId>optaplanner-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.optaplanner</groupId>
-            <artifactId>optaplanner-test</artifactId>
-            <scope>test</scope>
+			    <groupId>mysql</groupId>
+			    <artifactId>mysql-connector-java</artifactId>
+			    <scope>runtime</scope>
         </dependency>
 
 
@@ -257,7 +163,7 @@ Certainly! Here are step-by-step instructions to set up and run your project loc
 3. *Run Backend:*
    - Start your XAMPP Apache and MySQL servers.
    - Run the Spring Boot application. The database and entities will be created automatically.
-   - Verify that the backend is running by visiting [http://localhost:8082](http://localhost:8082) in your browser.
+   - Verify that the backend is running by visiting [http://localhost:8000](http://localhost:8000) in your browser.
 
 ### Frontend Setup:
 
@@ -287,30 +193,23 @@ Certainly! Here are step-by-step instructions to set up and run your project loc
 
 Now, your full-stack project should be up and running locally. If you encounter any issues during setup, check the console logs for error messages and ensure that all dependencies and prerequisites are correctly installed.
 
-# Illustrative example
-We aim to present a scheduling solution based on a student’s learning
-preferences and constraints. This particular student possesses specific
-learning space requirements, necessitates access to specific infrastruc-
-ture and equipment, and expresses a preference for a hybrid learning
-mode.
-
-
-![admin](img/screenAdmin.png)
-Figure 2: Interface (Admin) for different managements
-
-Consequently, the generated program will account for these constraints
-and preferences, offering a diverse and suitable plan for their academic
-journey.
-![planning](img/planningNew.png)
-Figure 3: A proposed scheduling program learning for a student
-
-
 # Video Demonstration
 
 Click the link below to watch a demonstration video:
 
 
-https://github.com/OUSSAMAOUHA/SmartBendEd_Plateform/assets/96892805/52db9341-e7e6-49ed-9984-da43071858ea
+## Utilisation 
+
+### Authentification :
+- *Pour s'authentifier en tant qu'administrateur :*
+  - Email : admin@gmail.com
+  - Mot de passe : ilyass123
+- *Pour s'authentifier en tant que client :*
+  - Email : ilyassmandour2002@gmail.com
+  - Mot de passe : ilyass123
+- *Pour s'authentifier en tant que formateur :*
+  - Email : abdo@gmail.com
+  - Mot de passe : ilyass123
 
 
 
