@@ -21,6 +21,9 @@ This platform will enable multi-criteria comparison of different project alterna
 
 The application architecture uses Angular for the frontend and Spring for the backend, with communication via an HTTP client.
 ## Docker Image
+sh
+
+
 version: '3'
 services:
   mysql:
