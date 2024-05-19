@@ -116,6 +116,7 @@ Purpose: JDBC driver for connecting to a MySQL database.
 
 
 xml
+```sh
 <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -221,8 +222,7 @@ Click the link below to watch a demonstration video:
 We welcome contributions from everyone, and we appreciate your help to make this project even better! If you would like to contribute, please follow these guidelines:
 
 ## Contributors
-- Oussama Ouhayou ([GitHub](https://github.com/OUSSAMAOUHA))
-- Refki Elhadi ([GitHub](https://github.com/edwinref))
-- Reda Makaoui ([GitHub](https://github.com/rmakaoui))
+- Roa Eldhimni ([GitHub](https://github.com/OUSSAMAOUHA))
+- Kawtar El azizi ([GitHub](https://github.com/edwinref))
+- Machmoum Hajar ([GitHub](https://github.com/Hajarita12))
 - Mohamed Lachgar ([Researchgate](https://www.researchgate.net/profile/Mohamed-Lachgar))
-- Driss Laanaoui ([Researchgate](https://www.researchgate.net/profile/My-Driss-Laanaoui-2))
