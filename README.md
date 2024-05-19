@@ -111,20 +111,21 @@ The backend code follows a modular and organized structure, leveraging the power
 
 
 
-2. *MySQL Connector/J:*
-   - Purpose: JDBC driver for connecting to a MySQL database.
+2. MySQL Connector/J:
+Purpose: JDBC driver for connecting to a MySQL database.
 
 
 xml
-         <dependency>
-		    	<groupId>org.springframework.boot</groupId>
-		   	  <artifactId>spring-boot-starter-data-jpa</artifactId>
-	     	</dependency>
-        <dependency>
-			    <groupId>mysql</groupId>
-			    <artifactId>mysql-connector-java</artifactId>
-			    <scope>runtime</scope>
-        </dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-jpa</artifactId>
+</dependency>
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <scope>runtime</scope>
+</dependency>
+
 
 
 ## Getting Started
@@ -201,15 +202,15 @@ Click the link below to watch a demonstration video:
 ## Utilisation 
 
 ### Authentification :
-- *Pour s'authentifier en tant qu'administrateur :*
-  - Email : admin@gmail.com
-  - Mot de passe : ilyass123
-- *Pour s'authentifier en tant que client :*
-  - Email : ilyassmandour2002@gmail.com
-  - Mot de passe : ilyass123
-- *Pour s'authentifier en tant que formateur :*
-  - Email : abdo@gmail.com
-  - Mot de passe : ilyass123
+- *Pour s'authentifier en tant que décideur  :*
+  - Email : kaoutarelazizi0607@gmail.com
+  - Mot de passe : kawtar
+- *Pour s'authentifier en tant que expert :*
+  - Email : hajarmachmoum546@gmail.com
+  - Mot de passe : hajar
+- *Pour s'authentifier en tant que deuxième expert :*
+  - Email : Roaeldhimni@gmail.com
+  - Mot de passe : roa
 
 
 
