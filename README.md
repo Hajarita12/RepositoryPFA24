@@ -227,7 +227,7 @@ https://github.com/Hajarita12/RepositoryPFA24/assets/120518556/60b7d1c8-a5bd-47b
 We welcome contributions from everyone, and we appreciate your help to make this project even better! If you would like to contribute, please follow these guidelines:
 
 ## Contributors
-- Roa Eldhimni ([GitHub](https://github.com/OUSSAMAOUHA))
-- Kawtar El azizi ([GitHub](https://github.com/edwinref))
+- Roa Eldhimni ([GitHub](https://github.com/roaeldhimni))
+- Kawtar El azizi ([GitHub](https://github.com/kawtare12/))
 - Machmoum Hajar ([GitHub](https://github.com/Hajarita12))
 - Mohamed Lachgar ([Researchgate](https://www.researchgate.net/profile/Mohamed-Lachgar))
